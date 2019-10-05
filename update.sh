@@ -38,7 +38,7 @@ fi
 
 # update git
 cd "$setting_dir" || exit 1
-for dir in dotfiles scripts mac windows local;do
+for dir in dotfiles scripts mac windows;do
   if [ -d $dir ];then
     cd $dir || exit 1
     if [ -d external ];then
