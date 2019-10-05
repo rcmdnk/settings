@@ -44,7 +44,7 @@ for dir in dotfiles scripts mac windows local;do
     if [ -d external ];then
       for d in external/*;do
         cd "$d" || exit 1
-        if [ "$(git branch --show-current)" = "master" ];then
+        if [ "$(git current-branch)" = "master" ];then
           execute_check git pull
         fi
         cd - || exit 1
@@ -53,13 +53,13 @@ for dir in dotfiles scripts mac windows local;do
     if [ -d submodules ];then
       for d in submodules/*;do
         cd "$d" || exit 1
-        if [ "$(git branch --show-current)" = "master" ];then
+        if [ "$(git current-branch)" = "master" ];then
           execute_check git update --nocommit
         fi
         cd - || exit 1
       done
     fi
-    if [ "$(git branch --show-current)" = "master" ];then
+    if [ "$(git current-branch)" = "master" ];then
       execute_check git update
     fi
     if [ -f ./install.sh ];then
@@ -72,7 +72,7 @@ done
 cd "$setting_dir" || exit 1
 if [[ "$OSTYPE" =~ darwin ]];then
   cd AppleScript || exit 1
-  if [ "$(git branch --show-current)" = "master" ];then
+  if [ "$(git current-branch)" = "master" ];then
     execute_check ./osadeall.sh -b ""
     execute_check git update --nocommit
     execute_check ./install.sh -b ""
