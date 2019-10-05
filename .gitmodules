@@ -1,0 +1,15 @@
+[submodule "dotfiles"]
+	path = dotfiles
+	url = git@github.com:rcmdnk/dotfiles
+[submodule "AppleScript"]
+	path = AppleScript
+	url = git@github.com:rcmdnk/AppleScript
+[submodule "mac"]
+	path = mac
+	url = git@github.com:rcmdnk/mac
+[submodule "scripts"]
+	path = scripts
+	url = git@github.com:rcmdnk/scripts
+[submodule "windows"]
+	path = windows
+	url = git@github.com:rcmdnk/windows
