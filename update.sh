@@ -78,7 +78,10 @@ if [[ "$OSTYPE" =~ darwin ]];then
     execute_check ./install.sh -b ""
   fi
 fi
+
+# Update settings
 cd "$setting_dir" || exit 1
+execute_check git update
 
 # update vim plugins by NeoBundle
 vim_proc=$(ps aux |grep "^$USER"|grep -q "[v]im -c")
