@@ -13,3 +13,6 @@
 [submodule "windows"]
 	path = windows
 	url = git@github.com:rcmdnk/windows
+[submodule "local"]
+	path = local
+	url = git@github.com:rcmdnk/local
