@@ -85,6 +85,7 @@ fi
 # Update settings
 cd "$setting_dir" || exit 1
 execute_check git update
+execute_check git submodule update
 
 # update vim plugins by NeoBundle
 vim_proc=$(ps aux |grep "^$USER"|grep -q "[v]im -c")
