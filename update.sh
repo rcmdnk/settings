@@ -41,7 +41,7 @@ cd "$setting_dir" || exit 1
 for dir in dotfiles scripts mac windows private local;do
   [ ! -d $dir ] && continue
   cd "$dir" || exit 1
-  if i git status >&/dev/null;then
+  if ! git status >&/dev/null;then
     cd ../ || exit 1
     continue
   fi
