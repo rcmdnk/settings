@@ -54,21 +54,23 @@ for dir in dotfiles scripts mac windows private local;do
       cd - || exit 1
     done
   fi
+
+  if [ $dir = private ] || [ $dir = local ];then
+    update_options=(1 --nocheck)
+  else
+    update_options=(1)
+  fi
   if [ -d submodules ];then
     for d in submodules/*;do
       cd "$d" || exit 1
       if [ "$(git current-branch)" = "master" ];then
-        execute_check git update --nocommit
+        execute_check git update --nocommit "${update_option[@]}"
       fi
       cd - || exit 1
     done
   fi
   if [ "$(git current-branch)" = "master" ];then
-    if [ $dir = private ] || [ $dir = local ];then
-      execute_check git update 1 --nocheck
-    else
-      execute_check git update
-    fi
+    execute_check git update "${update_option[@]}"
   fi
   if [ -f ./install.sh ];then
     execute_check ./install.sh -b ""
