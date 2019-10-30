@@ -64,7 +64,11 @@ for dir in dotfiles scripts mac windows private local;do
     done
   fi
   if [ "$(git current-branch)" = "master" ];then
-    execute_check git update
+    if [ $dir = private ] || [ $dir = local ];then
+      execute_check git update 1 --nocheck
+    else
+      execute_check git update
+    fi
   fi
   if [ -f ./install.sh ];then
     execute_check ./install.sh -b ""
