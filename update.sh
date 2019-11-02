@@ -64,13 +64,13 @@ for dir in dotfiles scripts mac windows private local;do
     for d in submodules/*;do
       cd "$d" || exit 1
       if [ "$(git current-branch)" = "master" ];then
-        execute_check git update --nocommit "${update_option[@]}"
+        execute_check git update --nocommit "${update_options[@]}"
       fi
       cd - || exit 1
     done
   fi
   if [ "$(git current-branch)" = "master" ];then
-    execute_check git update "${update_option[@]}"
+    execute_check git update "${update_options[@]}"
   fi
   if [ -f ./install.sh ];then
     execute_check ./install.sh -b ""
