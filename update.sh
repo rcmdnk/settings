@@ -56,9 +56,9 @@ for dir in dotfiles scripts mac windows private local;do
   fi
 
   if [ $dir = private ] || [ $dir = local ];then
-    update_options=(1 --nocheck)
+    update_options=(--nocheck)
   else
-    update_options=(1)
+    update_options=()
   fi
   if [ -d submodules ];then
     for d in submodules/*;do
