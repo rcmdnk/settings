@@ -54,17 +54,23 @@ for dir in dotfiles scripts mac windows private local;do
       cd - || exit 1
     done
   fi
+
+  if [ $dir = private ] || [ $dir = local ];then
+    update_options=(--nocheck)
+  else
+    update_options=()
+  fi
   if [ -d submodules ];then
     for d in submodules/*;do
       cd "$d" || exit 1
       if [ "$(git current-branch)" = "master" ];then
-        execute_check git update --nocommit
+        execute_check git update --nocommit "${update_options[@]}"
       fi
       cd - || exit 1
     done
   fi
   if [ "$(git current-branch)" = "master" ];then
-    execute_check git update
+    execute_check git update --commit "${update_options[@]}"
   fi
   if [ -f ./install.sh ];then
     execute_check ./install.sh -b ""
@@ -77,7 +83,7 @@ if [[ "$OSTYPE" =~ darwin ]];then
   cd AppleScript || exit 1
   if [ "$(git current-branch)" = "master" ];then
     execute_check ./osadeall.sh -b ""
-    execute_check git update --nocommit
+    execute_check git update
     execute_check ./install.sh -b ""
   fi
 fi
