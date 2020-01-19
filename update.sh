@@ -49,7 +49,7 @@ for dir in dotfiles scripts mac windows private local;do
     for d in external/*;do
       cd "$d" || exit 1
       if [ "$(git current-branch)" = "master" ];then
-        execute_check git pull
+        execute_check git pull --rebase
       fi
       cd - || exit 1
     done
@@ -94,7 +94,7 @@ execute_check git update
 execute_check git submodule update
 
 # update vim plugins by NeoBundle
-vim_proc=$(ps aux |grep "^$USER"|grep -q "[v]im -c")
+vim_proc=$(pgrep -l -f "vim -c")
 if [ -n "$vim_proc" ];then
   echo "previous vim -c is still running, kill it."
   kill -kill "$vim_proc"
