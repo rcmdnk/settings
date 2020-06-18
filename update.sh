@@ -47,12 +47,16 @@ for dir in dotfiles scripts mac windows private local;do
   fi
   echo hoge2
   if [ -d external ];then
+    echo hoge3
     for d in external/*;do
+      echo hoge4
       cd "$d" || exit 1
       if [ "$(git current-branch)" = "master" ];then
         execute_check git pull --rebase
       fi
-      cd - || exit 1
+      echo hoge5
+      cd - > /dev/null || exit 1
+      echo hoge6
     done
   fi
 
@@ -67,7 +71,7 @@ for dir in dotfiles scripts mac windows private local;do
       if [ "$(git current-branch)" = "master" ];then
         execute_check git update --nocommit "${update_options[@]}"
       fi
-      cd - || exit 1
+      cd - > /dev/null || exit 1
     done
   fi
   if [ "$(git current-branch)" = "master" ];then
