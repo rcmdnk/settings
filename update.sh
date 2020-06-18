@@ -35,28 +35,21 @@ if [ ! -d "$setting_dir" -a ! -L "$setting_dir" ];then
 fi
 
 # update git
-echo hoge0
 cd "$setting_dir" || exit 1
 for dir in dotfiles scripts mac windows private local;do
-  echo hoge1
   [ ! -d $dir ] && continue
   cd "$dir" || exit 1
   if ! git status >&/dev/null;then
     cd ../ || exit 1
     continue
   fi
-  echo hoge2
   if [ -d external ];then
-    echo hoge3
     for d in external/*;do
-      echo hoge4
       cd "$d" || exit 1
       if [ "$(git current-branch)" = "master" ];then
         execute_check git pull --rebase
       fi
-      echo hoge5
       cd - > /dev/null || exit 1
-      echo hoge6
     done
   fi
 
