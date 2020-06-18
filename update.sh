@@ -29,20 +29,23 @@ function execute_check () {
 }
 
 # Initial installation
-if [ ! -L "$setting_dir" ];then
+if [ ! -d "$setting_dir" -a ! -L "$setting_dir" ];then
   mkdir -p "$link_dir"
   ln -s "$curdir" "$setting_dir"
 fi
 
 # update git
+echo hoge0
 cd "$setting_dir" || exit 1
 for dir in dotfiles scripts mac windows private local;do
+  echo hoge1
   [ ! -d $dir ] && continue
   cd "$dir" || exit 1
   if ! git status >&/dev/null;then
     cd ../ || exit 1
     continue
   fi
+  echo hoge2
   if [ -d external ];then
     for d in external/*;do
       cd "$d" || exit 1
