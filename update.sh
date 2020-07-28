@@ -91,14 +91,6 @@ cd "$setting_dir" || exit 1
 execute_check git update
 execute_check git submodule update
 
-# update vim plugins by NeoBundle
-vim_proc=$(pgrep -l -f "vim -c")
-if [ -n "$vim_proc" ];then
-  echo "previous vim -c is still running, kill it."
-  kill -kill "$vim_proc"
-fi
-execute_check vim  -c "silent call dein#update()" -c "quit"
-
 #if [[ "$OSTYPE" =~ darwin ]];then
 #  # OS and OS default app update
 #  execute_check /usr/sbin/softwareupdate --install --all
@@ -112,3 +104,12 @@ if type brew >& /dev/null;then
   execute_check brew file update
   execute_check brew file clean -C
 fi
+
+# update vim plugins by NeoBundle
+vim_proc=$(pgrep -l -f "vim -c"|cut -n1)
+if [ -n "$vim_proc" ];then
+  echo "previous vim -c is still running, kill it."
+  kill -kill "$vim_proc"
+fi
+execute_check vim  -c "silent call dein#update()" -c "quit"
+
