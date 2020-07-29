@@ -106,7 +106,7 @@ if type brew >& /dev/null;then
 fi
 
 # update vim plugins by NeoBundle
-vim_proc=$(pgrep -l -f "vim -c"|cut -n1)
+vim_proc=$(pgrep -l -f "vim -c"|cut -d ' ' -f 1)
 if [ -n "$vim_proc" ];then
   echo "previous vim -c is still running, kill it."
   kill -kill "$vim_proc"
