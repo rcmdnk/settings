@@ -111,5 +111,6 @@ if [ -n "$vim_proc" ];then
   echo "previous vim -c is still running, kill it."
   kill -kill "$vim_proc"
 fi
+rm -rf ~/.vim/python3
 execute_check vim  -c "silent call dein#update()" -c "quit"
 
