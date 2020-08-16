@@ -29,7 +29,7 @@ function execute_check () {
 }
 
 # Initial installation
-if [ ! -d "$setting_dir" -a ! -L "$setting_dir" ];then
+if [ ! -d "$setting_dir" ] && [ ! -L "$setting_dir" ];then
   mkdir -p "$link_dir"
   ln -s "$curdir" "$setting_dir"
 fi
@@ -105,12 +105,14 @@ if type brew >& /dev/null;then
   execute_check brew file clean -C
 fi
 
-# update vim plugins by NeoBundle
-vim_proc=$(pgrep -l -f "vim -c"|cut -d ' ' -f 1)
-if [ -n "$vim_proc" ];then
-  echo "previous vim -c is still running, kill it."
-  kill -kill "$vim_proc"
+# update vim plugins by dein
+default_vim=nvim
+if type $default_vim >& /dev/null;then
+  vim_proc=$(pgrep -l -f "$default_vim -c"|cut -d ' ' -f 1)
+  if [ -n "$vim_proc" ];then
+    echo "previous $default_vim -c is still running, kill it."
+    kill -kill "$vim_proc"
+  fi
+  rm -rf ~/.vim/python3
+  execute_check $default_vim -c "silent call dein#update()" -c "quit"
 fi
-rm -rf ~/.vim/python3
-execute_check vim  -c "silent call dein#update()" -c "quit"
-
