@@ -114,5 +114,9 @@ if type $default_vim >& /dev/null;then
     kill -kill "$vim_proc"
   fi
   rm -rf ~/.vim/python3
-  execute_check $default_vim -c "silent call dein#update()" -c "quit"
+  execute_check $default_vim -c "silent call dein#update()|q"
+  # All in one is too many arguments for Vim
+  execute_check $default_vim -c "CocInstall coc-actions coc-browser coc-calc coc-clangd coc-cmake coc-css coc-explorer coc-fzf-preview coc-git coc-go coc-highlight coc-html coc-java coc-json|q"
+  execute_check $default_vim -c "CocInstall coc-lists coc-markdownlint coc-powershell coc-python coc-sh coc-spell-checker coc-sql coc-texlab coc-vimlsp coc-xml coc-yaml coc-yank|q"
+  execute_check $default_vim -c "CocUpdate|q"
 fi
