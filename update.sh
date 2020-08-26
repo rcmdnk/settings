@@ -118,6 +118,6 @@ if type $default_vim >& /dev/null;then
   execute_check $default_vim -c "silent call dein#recache_runtimepath()|q"
   # All in one is too many arguments for Vim
   execute_check $default_vim -c "silent CocInstall coc-actions coc-browser coc-calc coc-clangd coc-cmake coc-css coc-explorer coc-fzf-preview coc-git coc-go coc-highlight coc-html coc-java coc-json coc-dictionary coc-word coc-tag|q"
-  execute_check $default_vim -c "silent CocInstall coc-lists coc-markdownlint coc-powershell coc-python coc-sh coc-spell-checker coc-sql coc-texlab coc-vimlsp coc-xml coc-yaml coc-yank :CocInstall coc-diagnostic|q"
+  execute_check $default_vim -c "silent CocInstall coc-lists coc-markdownlint coc-powershell coc-python coc-sh coc-spell-checker coc-sql coc-texlab coc-vimlsp coc-xml coc-yaml coc-yank coc-diagnostic|q"
   execute_check $default_vim -c "silent CocUpdate|q"
 fi
