@@ -107,7 +107,7 @@ fi
 
 # update vim plugins by dein
 default_vim=nvim
-for vi in (vim nvim);do
+for vi in vim nvim;do
   if type $vi >& /dev/null;then
     vim_proc=$(pgrep -l -f "$vi -c"|cut -d ' ' -f 1)
     if [ -n "$vim_proc" ];then
