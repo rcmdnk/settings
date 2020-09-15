@@ -106,7 +106,6 @@ if type brew >& /dev/null;then
 fi
 
 # update vim plugins by dein
-default_vim=nvim
 for vi in vim nvim;do
   if type $vi >& /dev/null;then
     vim_proc=$(pgrep -l -f "$vi -c"|cut -d ' ' -f 1)
@@ -114,14 +113,14 @@ for vi in vim nvim;do
       echo "previous $vi -c is still running, kill it."
       kill -kill "$vim_proc"
     fi
-    rm -rf ~/.vim/python3
-    execute_check $vi -c "silent call dein#update()|q"
-    execute_check $vi -c "silent call dein#recache_runtimepath()|q"
+    execute_check $vi -c "silent call InstallPipPackages()" -c "quit"
+    execute_check $vi -c "silent call dein#update()" -c "quit"
+    execute_check $vi -c "silent call dein#recache_runtimepath()" -c "quit"
     if [ $vi = "nvim" ];then
       # All in one is too many arguments for Vim
-      execute_check $vi -c "silent CocInstall coc-actions coc-browser coc-calc coc-clangd coc-cmake coc-css coc-explorer coc-fzf-preview coc-git coc-go coc-highlight coc-html coc-java coc-json coc-dictionary coc-word coc-tag|q"
-      execute_check $vi -c "silent CocInstall coc-lists coc-markdownlint coc-powershell coc-python coc-sh coc-spell-checker coc-sql coc-texlab coc-vimlsp coc-xml coc-yaml coc-yank coc-diagnostic|q"
-      execute_check $vi -c "silent CocUpdate|q"
+      execute_check $vi -c "silent CocInstall coc-actions coc-browser coc-calc coc-clangd coc-cmake coc-css coc-explorer coc-fzf-preview coc-git coc-go coc-highlight coc-html coc-java coc-json coc-dictionary coc-word coc-tag" -c "quit"
+      execute_check $vi -c "silent CocInstall coc-lists coc-markdownlint coc-powershell coc-python coc-sh coc-spell-checker coc-sql coc-texlab coc-vimlsp coc-xml coc-yaml coc-yank coc-diagnostic" -c "quit"
+      execute_check $vi -c "silent CocUpdate" -c "quit"
     fi
   fi
 done
