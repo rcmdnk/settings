@@ -111,7 +111,7 @@ for vi in vim nvim;do
     vim_proc=$(pgrep -l -f "$vi -c"|cut -d ' ' -f 1)
     if [ -n "$vim_proc" ];then
       echo "previous $vi -c is still running, kill it."
-      kill -kill "$vim_proc"
+      kill -kill $vim_proc
     fi
     execute_check $vi -c "silent call InstallPipPackages()" -c "quit"
     execute_check $vi -c "silent call dein#update()" -c "quit"
