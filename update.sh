@@ -91,13 +91,13 @@ cd "$setting_dir" || exit 1
 execute_check git update
 execute_check git submodule update
 
-#if [[ "$OSTYPE" =~ darwin ]];then
-#  # OS and OS default app update
-#  execute_check /usr/sbin/softwareupdate --install --all
+if [[ "$OSTYPE" =~ darwin ]];then
+  # OS and OS default app update
+  execute_check /usr/sbin/softwareupdate --install --all --force
 
-#  # App Store app update (may need to open AppStore.app...?)
-#  execute_check mas upgrade
-#fi
+  # App Store app update (may need to open AppStore.app...?)
+  execute_check mas upgrade
+fi
 
 # brew
 if type brew >& /dev/null;then
