@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source ~/.bashrc
+
 link_dir="$HOME/usr/share/"
 
 debug=0
