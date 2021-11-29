@@ -103,7 +103,7 @@ fi
 
 # brew
 if type brew >& /dev/null;then
-  execute_check brew file update --no_appstore
+  execute_check brew file update
   execute_check brew file clean -C
 fi
 
