@@ -125,3 +125,10 @@ for vi in vim nvim;do
     fi
   fi
 done
+
+# Install packages
+_npm_install () {
+  npm i -g textlint
+  npm i -g textlint-rule-max-ten textlint-rule-spellcheck-tech-word textlint-rule-no-mix-dearu-desumasu
+}
+#_npm_install
