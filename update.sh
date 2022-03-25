@@ -99,12 +99,14 @@ if [[ "$OSTYPE" =~ darwin ]];then
 
   # App Store app update (may need to open AppStore.app...?)
   execute_check mas upgrade
+
+  # Update Rosetta environment
+  execute_check arch -arch x86_64 /usr/local/brew file update
 fi
 
 # brew
 if type brew >& /dev/null;then
   execute_check brew file update
-  execute_check brew file clean -C
 fi
 
 # update vim plugins by dein
@@ -128,7 +130,6 @@ done
 
 # Install packages
 _npm_install () {
-  npm i -g textlint
-  npm i -g textlint-rule-max-ten textlint-rule-spellcheck-tech-word textlint-rule-no-mix-dearu-desumasu
+  npm i -g textlint textlint-rule-max-ten textlint-rule-spellcheck-tech-word textlint-rule-no-mix-dearu-desumasu
 }
 #_npm_install
