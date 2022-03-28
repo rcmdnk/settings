@@ -101,7 +101,9 @@ if [[ "$OSTYPE" =~ darwin ]];then
   execute_check mas upgrade
 
   # Update Rosetta environment
-  execute_check arch -arch x86_64 /usr/local/brew file update
+  if [[ "$HOSTTYPE" == arm64 ]];then
+    execute_check arch -arch x86_64 /usr/local/bin/brew file update
+  fi
 fi
 
 # brew
