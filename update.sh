@@ -122,13 +122,13 @@ for vi in vim nvim;do
       echo "previous $vi -c is still running, kill it."
       kill -kill $vim_proc
     fi
-    execute_check $vi -c "silent call InstallPipPackages()" -c "quit"
-    execute_check $vi -c "silent call dein#update()" -c "quit"
-    execute_check $vi -c "silent call dein#recache_runtimepath()" -c "quit"
+    execute_check $vi -c "silent call InstallPipPackages()|quit"
+    execute_check $vi -c "silent call dein#update()|quit"
+    execute_check $vi -c "silent call dein#recache_runtimepath()|quit"
     if [ $vi = "nvim" ];then
       # All in one is too many arguments for Vim
-      execute_check $vi -c "silent call InstallCocExtentions()" -c "quit"
-      execute_check $vi -c "silent CocUpdate" -c "quit"
+      execute_check $vi -c "silent call InstallCocExtentions()|quit"
+      execute_check $vi -c "silent CocUpdate|quit"
     fi
   fi
 done
