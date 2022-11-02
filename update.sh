@@ -128,7 +128,7 @@ for vi in vim nvim;do
     if [ $vi = "nvim" ];then
       # All in one is too many arguments for Vim
       execute_check $vi -c "silent call InstallCocExtentions()|quit"
-      execute_check $vi -c "silent CocUpdate|quit"
+      execute_check $vi -c "silent CocUpdate" -c "quit"
     fi
   fi
 done
