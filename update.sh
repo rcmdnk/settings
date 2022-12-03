@@ -112,12 +112,12 @@ fi
 # brew
 if type brew >& /dev/null;then
   #execute_check brew file update
-  execute_check HOMEBREW_NO_INSTALL_CLEANUP=1 command brew update
-  execute_check HOMEBREW_NO_INSTALL_CLEANUP=1 command brew upgrade
-  execute check brew file pull
-  execute check brew file install
-  execute check brew file init
-  execute check brew file push
+  HOMEBREW_NO_INSTALL_CLEANUP=1 execute_check command brew update
+  HOMEBREW_NO_INSTALL_CLEANUP=1 execute_check command brew upgrade
+  execute_check brew file pull
+  execute_check brew file install
+  execute_check brew file init
+  execute_check brew file push
 fi
 
 # update vim plugins by dein
@@ -128,7 +128,6 @@ for vi in vim nvim;do
       echo "previous $vi -c is still running, kill it."
       kill -kill $vim_proc
     fi
-    execute_check $vi -c "silent call InstallPipPackages()|quit"
     execute_check $vi -c "silent call dein#update()|quit"
     execute_check $vi -c "silent call dein#recache_runtimepath()|quit"
     if [ $vi = "nvim" ];then
