@@ -111,13 +111,7 @@ fi
 
 # brew
 if type brew >& /dev/null;then
-  #execute_check brew file update
-  HOMEBREW_NO_INSTALL_CLEANUP=1 execute_check command brew update
-  HOMEBREW_NO_INSTALL_CLEANUP=1 execute_check command brew upgrade
-  execute_check brew file pull
-  execute_check brew file install
-  execute_check brew file init
-  execute_check brew file push
+  execute_check brew file update
 fi
 
 # update vim plugins by dein
