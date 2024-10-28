@@ -99,14 +99,6 @@ if [[ "$OSTYPE" =~ darwin ]];then
 
   # App Store app update (may need to open AppStore.app...?)
   execute_check mas upgrade
-
-  # Update Rosetta environment
-  if [[ "$HOSTTYPE" == arm64 ]] || [[ "$HOSTTYPE" == aarch64 ]] ;then
-    _path_orig="$PATH"
-    export PATH="/usr/local/bin:$PATH"
-    execute_check arch -arch x86_64 /usr/local/bin/brew file update
-    export PATH="$_path_orig"
-  fi
 fi
 
 # brew
