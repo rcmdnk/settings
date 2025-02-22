@@ -106,27 +106,9 @@ if type brew >& /dev/null;then
   execute_check brew file update
 fi
 
-# update vim plugins by dein
-for vi in vim nvim;do
-  if type $vi >& /dev/null;then
-    vim_proc=$(pgrep -l -f "$vi -c"|cut -d ' ' -f 1)
-    if [ -n "$vim_proc" ];then
-      echo "previous $vi -c is still running, kill it."
-      kill -kill $vim_proc
-    fi
-    execute_check $vi -c "silent call dein#update()|quit"
-    execute_check $vi -c "silent call dein#recache_runtimepath()|quit"
-    if [ $vi = "nvim" ];then
-      # All in one is too many arguments for Vim
-      execute_check $vi -c "silent call InstallCocExtentions()|quit"
-      execute_check $vi -c "silent CocUpdate" -c "quit"
-    fi
-  fi
-done
-
 # Install packages
 _pip_install () {
-  pip3 install -U pip install pynvim autopep8 black pep8 flake8 pyflakes pylint jedi
+  pip3 install -U pip install pynvim ruff mypy autopep8 black pep8 flake8 pyflakes pylint jedi
 }
 execute_check _pip_install
 
