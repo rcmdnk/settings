@@ -103,6 +103,7 @@ fi
 
 # brew
 if type brew >& /dev/null;then
+  execute_check brew file init
   execute_check brew file update
 fi
 
