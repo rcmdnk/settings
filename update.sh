@@ -107,6 +107,10 @@ if type brew >& /dev/null;then
   execute_check brew file update
 fi
 
+# mise
+mise install > /dev/null 2>&1 || true
+mise upgrade --bump > /dev/null 2>&1 || true
+
 # Install packages
 #_pip_install () {
 #  pip3 install -U pip install pynvim ruff mypy autopep8 black pep8 flake8 pyflakes pylint jedi
