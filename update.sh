@@ -121,3 +121,8 @@ _npm_install () {
   npm i -g textlint textlint-rule-max-ten textlint-rule-spellcheck-tech-word textlint-rule-no-mix-dearu-desumasu textlint-rule-preset-ja-technical-writing textlint-filter-rule-allowlist textlint-rule-preset-ja-spacing textlint-rule-preset-jtf-style textlint-rule-preset-japanese textlint-rule-terminology
 }
 execute_check _npm_install
+
+
+if [ -x ~/.local_update.sh ];then
+  execute_check ~/.local_update.sh
+fi
