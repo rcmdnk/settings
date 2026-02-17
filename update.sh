@@ -105,11 +105,26 @@ fi
 if type brew >& /dev/null;then
   execute_check brew file init
   execute_check brew file update
+  # Restart Google IME, as it requires restart after update
+  inputmethod=$(launchctl list | grep application.com.google.inputmethod.Japanese | awk '{print $3}')
+  if [ -n "$inputmethod" ];then
+    launchctl remove "$inputmethod"
+  fi
+  converter=$(launchctl list | grep com.google.inputmethod.Japanese.Converter | awk '{print $3}')
+  if [ -n "$converter" ];then
+    launchctl remove "$converter"
+  fi
+  renderer=$(launchctl list | grep com.google.inputmethod.Japanese.Renderer | awk '{print $3}')
+  if [ -n "$renderer" ];then
+    launchctl remove "$renderer"
+  fi
+  launchctl load /Library/LaunchAgents/com.google.inputmethod.Japanese.Converter.plist
+  launchctl load /Library/LaunchAgents/com.google.inputmethod.Japanese.Renderer.plist
 fi
 
-# mise
-mise install > /dev/null 2>&1 || true
-mise upgrade --bump > /dev/null 2>&1 || true
+# mise, set MISE_CEILING_PATHS to avoid accessing security required paths
+MISE_CEILING_PATHS=/tmp mise cfg mise install > /dev/null 2>&1 || true
+MISE_CEILING_PATHS=/tmp mise cfg mise upgrade --bump > /dev/null 2>&1 || true
 
 # Install packages
 #_pip_install () {
