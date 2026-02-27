@@ -127,6 +127,7 @@ fi
 # mise, set MISE_CEILING_PATHS to avoid accessing security required paths
 MISE_CEILING_PATHS=/tmp mise cfg mise install > /dev/null 2>&1 || true
 MISE_CEILING_PATHS=/tmp mise cfg mise upgrade --bump > /dev/null 2>&1 || true
+MISE_CEILING_PATHS=/tmp mise cfg mise prune -y > /dev/null 2>&1 || true
 
 # Install packages
 #_pip_install () {
