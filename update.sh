@@ -126,9 +126,7 @@ fi
 
 # mise, set MISE_CEILING_PATHS to avoid accessing security required paths
 MISE_CEILING_PATHS=/tmp mise cfg mise install > /dev/null 2>&1 || true
-# marp has incompatibility with node 25, keep 22 for now
-# https://github.com/marp-team/marp-cli/issues/708
-MISE_CEILING_PATHS=/tmp mise cfg mise upgrade --bump --exclude node > /dev/null 2>&1 || true
+MISE_CEILING_PATHS=/tmp mise cfg mise upgrade > /dev/null 2>&1 || true
 MISE_CEILING_PATHS=/tmp mise cfg mise prune -y > /dev/null 2>&1 || true
 
 # Install packages
