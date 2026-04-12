@@ -129,16 +129,20 @@ MISE_CEILING_PATHS=/tmp mise cfg mise install > /dev/null 2>&1 || true
 MISE_CEILING_PATHS=/tmp mise cfg mise upgrade > /dev/null 2>&1 || true
 MISE_CEILING_PATHS=/tmp mise cfg mise prune -y > /dev/null 2>&1 || true
 
+# skills
+skills add berserkdisruptors/contextual-commits -y -g -s '*' -a claude-code -a codex
+skills add https://github.com/openai/skills/tree/main/skills/.curated/slides  -y -g -s 'slides' -a claude-code -a codex
+
 # Install packages
 #_pip_install () {
 #  pip3 install -U pip install pynvim ruff mypy autopep8 black pep8 flake8 pyflakes pylint jedi
 #}
 #execute_check _pip_install
 
-_npm_install () {
-  npm i -g textlint textlint-rule-max-ten textlint-rule-spellcheck-tech-word textlint-rule-no-mix-dearu-desumasu textlint-rule-preset-ja-technical-writing textlint-filter-rule-allowlist textlint-rule-preset-ja-spacing textlint-rule-preset-jtf-style textlint-rule-preset-japanese textlint-rule-terminology
-}
-execute_check _npm_install
+#_npm_install () {
+#  npm i -g textlint textlint-rule-max-ten textlint-rule-spellcheck-tech-word textlint-rule-no-mix-dearu-desumasu textlint-rule-preset-ja-technical-writing textlint-filter-rule-allowlist textlint-rule-preset-ja-spacing textlint-rule-preset-jtf-style textlint-rule-preset-japanese textlint-rule-terminology
+#}
+#execute_check _npm_install
 
 
 if [ -x ~/.local_update.sh ];then
