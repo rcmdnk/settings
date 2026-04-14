@@ -130,8 +130,15 @@ MISE_CEILING_PATHS=/tmp mise cfg mise upgrade > /dev/null 2>&1 || true
 MISE_CEILING_PATHS=/tmp mise cfg mise prune -y > /dev/null 2>&1 || true
 
 # skills
-skills add berserkdisruptors/contextual-commits -y -g -s '*' -a claude-code -a codex
-skills add https://github.com/openai/skills/tree/main/skills/.curated/slides  -y -g -s 'slides' -a claude-code -a codex
+for skill in \
+      https://github.com/berserkdisruptors/contextual-commits/tree/main/skills/contextual-commit \
+      https://github.com/berserkdisruptors/contextual-commits/tree/main/skills/recall \
+      https://github.com/openai/skills/tree/main/skills/.curated/slides  \
+      https://github.com/browser-use/browser-use/tree/main/skills/browser-use \
+      https://github.com/JuliusBrussee/caveman/blob/main/skills/caveman \
+    ;do
+  skills add $skill -y -g -a claude-code -a codex
+done
 
 # Install packages
 #_pip_install () {
