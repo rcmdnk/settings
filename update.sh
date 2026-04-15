@@ -137,7 +137,7 @@ for skill in \
       https://github.com/browser-use/browser-use/tree/main/skills/browser-use \
       https://github.com/JuliusBrussee/caveman/blob/main/skills/caveman \
     ;do
-  skills add $skill -y -g -a claude-code -a codex
+  execute_check skills add $skill -y -g -a claude-code -a codex
 done
 
 # Install packages
