@@ -131,16 +131,16 @@ MISE_CEILING_PATHS=/tmp mise cfg mise prune -y > /dev/null 2>&1 || true
 
 # skills
 for skill in \
-      https://github.com/berserkdisruptors/contextual-commits/tree/main/skills/contextual-commit \
-      https://github.com/berserkdisruptors/contextual-commits/tree/main/skills/recall \
-      https://github.com/openai/skills/tree/main/skills/.curated/slides  \
-      https://github.com/browser-use/browser-use/tree/main/skills/browser-use \
-      https://github.com/anthropics/skills/tree/main/skills/skill-creator \
-      https://github.com/anthropics/skills/tree/main/skills/docx \
-      https://github.com/anthropics/skills/tree/main/skills/pptx \
-      https://github.com/anthropics/skills/tree/main/skills/pdf \
+      "berserkdisruptors/contextual-commits contextual-commit" \
+      "berserkdisruptors/contextual-commits recall" \
+      "browser-use/browser-use browser-use" \
+      "anthropics/skills skill-creator" \
+      "anthropics/skills docx" \
+      "anthropics/skills pptx" \
+      "anthropics/skills pdf" \
     ;do
-  execute_check skills add $skill -y -g -a claude-code -a codex
+  for agent in claude-code codex github-copiolot;do
+    execute_check gh kill install --scope user --agent $agent $(echo $skill)
 done
 #https://github.com/JuliusBrussee/caveman/blob/main/skills/caveman \
 
