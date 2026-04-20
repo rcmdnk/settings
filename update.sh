@@ -141,6 +141,7 @@ for skill in \
     ;do
   for agent in claude-code codex github-copiolot;do
     execute_check gh kill install --scope user --agent $agent $(echo $skill)
+  done
 done
 #https://github.com/JuliusBrussee/caveman/blob/main/skills/caveman \
 
