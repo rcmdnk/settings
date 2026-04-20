@@ -135,6 +135,10 @@ for skill in \
       https://github.com/berserkdisruptors/contextual-commits/tree/main/skills/recall \
       https://github.com/openai/skills/tree/main/skills/.curated/slides  \
       https://github.com/browser-use/browser-use/tree/main/skills/browser-use \
+      https://github.com/anthropics/skills/tree/main/skills/skill-creator \
+      https://github.com/anthropics/skills/tree/main/skills/docx \
+      https://github.com/anthropics/skills/tree/main/skills/pptx \
+      https://github.com/anthropics/skills/tree/main/skills/pdf \
     ;do
   execute_check skills add $skill -y -g -a claude-code -a codex
 done
