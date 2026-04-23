@@ -139,11 +139,10 @@ for skill in \
       "anthropics/skills pptx" \
       "anthropics/skills pdf" \
     ;do
-  for agent in claude-code codex github-copiolot;do
-    execute_check gh kill install --scope user --agent $agent $(echo $skill)
+  for agent in claude-code codex github-copilot;do
+    execute_check gh skill install --force --scope user --agent $agent $(echo $skill)
   done
 done
-#https://github.com/JuliusBrussee/caveman/blob/main/skills/caveman \
 
 # Install packages
 #_pip_install () {
