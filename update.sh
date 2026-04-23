@@ -130,19 +130,19 @@ MISE_CEILING_PATHS=/tmp mise cfg mise upgrade > /dev/null 2>&1 || true
 MISE_CEILING_PATHS=/tmp mise cfg mise prune -y > /dev/null 2>&1 || true
 
 # skills
-for skill in \
-      "berserkdisruptors/contextual-commits contextual-commit" \
-      "berserkdisruptors/contextual-commits recall" \
-      "browser-use/browser-use browser-use" \
-      "anthropics/skills skill-creator" \
-      "anthropics/skills docx" \
-      "anthropics/skills pptx" \
-      "anthropics/skills pdf" \
-    ;do
-  for agent in claude-code codex github-copilot;do
-    execute_check gh skill install --force --scope user --agent $agent $(echo $skill)
-  done
-done
+#for skill in \
+#      "berserkdisruptors/contextual-commits contextual-commit" \
+#      "berserkdisruptors/contextual-commits recall" \
+#      "browser-use/browser-use browser-use" \
+#      "anthropics/skills skill-creator" \
+#      "anthropics/skills docx" \
+#      "anthropics/skills pptx" \
+#      "anthropics/skills pdf" \
+#    ;do
+#  for agent in claude-code codex github-copilot;do
+#    execute_check gh skill install --force --scope user --agent $agent $(echo $skill)
+#  done
+#done
 
 # Install packages
 #_pip_install () {
